@@ -1,0 +1,27 @@
+version: '3'
+services:
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   tty: true
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - ./frontend:/usr/src/app
+  #   command: sh -c "yarn start"
+  #   ports:
+  #     - "3000:3000"
+  
+  backend:
+    build:
+      context: ./backend
+    environment: 
+      TWITTER_API_KEY: ${TWITTER_API_KEY:-}
+      TWITTER_API_SECRET: ${TWITTER_API_SECRET:-}
+    volumes:
+     - ./backend:/usr/src/app
+    command: "air -c air.toml"
+    ports:
+      - "3001:1323"
+
+
